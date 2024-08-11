@@ -14,7 +14,6 @@ def test_fetch_existing_poem_by_title():
     assert data[0]['title'].lower() == existing_title.lower()
 
 def test_non_existing_title():
-    # Test case to fetch a poem with a non-existing title
     non_existing_title = "This Title Does Not Exist"
     response = requests.get(f"{base_url}/title/{non_existing_title}")
 
@@ -27,7 +26,6 @@ def test_non_existing_title():
     assert data['reason'] == 'Not found', "Expected reason 'Not found' in response"
 
 def test_fetch_poems_by_linecount():
-    # Test case to fetch poems with a specific line count
     expected_line_count = 6
     response = requests.get(f"{base_url}/linecount/{expected_line_count}")
     assert response.status_code == 200, "Expected status code 200"
@@ -49,7 +47,6 @@ def test_fetch_poems_by_linecount():
         pytest.fail(f"Found poems with incorrect line counts:\n{mismatch_details}")
 
 def test_invalid_endpoint():
-    # Test case for an invalid endpoint
     response = requests.get(f"{base_url}/invalid_endpoint")
     assert response.status_code == 200, "Expected HTTP status code 200"
 
@@ -61,7 +58,6 @@ def test_invalid_endpoint():
     assert data['reason'] == 'invalid_endpoint list not available. Only author and title allowed.', "Expected reason 'invalid_endpoint' in response"
 
 def test_api_throttling():
-    # Test with a larger number of requests to ensure throttling is triggered
     request_count = 20
     delay_between_requests = 0.05
 
