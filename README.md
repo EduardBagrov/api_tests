@@ -98,4 +98,23 @@ This repository contains a suite of tests for the Cat Facts API, which provides 
 **Status**: ✅ Passing
 
 
+# Bugs
 
+## Issue with Line Count in Poetry DB
+
+While testing the Poetry DB API, a bug was discovered related to fetching poems by line count. Specifically, when requesting poems with a certain line count, some returned poems do not match the requested line count.
+
+#### Steps to Reproduce
+
+1. Make a GET request to the `/linecount/{line_count}` endpoint with a specific line count (e.g., 6).
+2. Observe the response to see if any poems have a line count different from what was requested.
+
+#### Example
+
+- Request: `GET /linecount/6`
+- Response: Includes a poem titled "One Year ago -- jots what?" with 7 lines instead of 6.
+
+
+### Future Testing
+
+Additional tests should be performed to verify that poems are returned with the correct line count across various requests and that other endpoints function as expected.
